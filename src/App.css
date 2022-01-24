@@ -1,3 +1,18 @@
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-areas: 
+    "date"
+    "main"
+    "input";
+  grid-template-rows: 200px 1fr 90px;
+  height: 896px;
+  width: 414px;
+  border: 1px solid black;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+img {
+  height: 20px;
+  width: 20px;
 }
