@@ -2,10 +2,8 @@ import React from "react";
 import "./input-todo.css";
 
 
-class InputTodo extends React.Component {
-    // componentDidUpdate() {
-    //     this.props.inputElement.current.focus()
-    // }
+class InputTodo extends React.Component {      
+    
     render() {
         return (
             <div className="form-wrp">
@@ -17,7 +15,7 @@ class InputTodo extends React.Component {
                         onChange={this.props.handleInput}
                     />
                     <button className="add-btn"
-                    type="submit">Add Task</button>
+                    type="submit">Add</button>
                 </form>
             </div>
         )

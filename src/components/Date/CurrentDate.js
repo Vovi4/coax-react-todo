@@ -5,8 +5,8 @@ class CurentDate extends React.Component {
     constructor() {
         super()
 
-        let data = new Date(),
-        current = (data.getMonth() + 1) + " " + data.getDate() + " " + data.getFullYear();
+        const data = new Date();
+        const current = (data.getMonth() + 1) + " " + data.getDate() + " " + data.getFullYear();
 
         this.state = {
             date: current
