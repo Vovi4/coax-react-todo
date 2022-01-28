@@ -17,13 +17,13 @@ const reducer = (state, action) => {
     switch (action.type) {
         case ACTIONS.INPUT_HANDLE:
             return {
-                ...state, 
+                ...state,
                 currentItem: action.currentItem
             };
         case ACTIONS.ADD_TODO:
             return {
                 ...state,
-                
+
                 items: action.items,
                 currentItem: {
                     text: "", id: ""
@@ -46,8 +46,8 @@ const reducer = (state, action) => {
 
 export const statusChange = (updatedItem) => ({ type: ACTIONS.STATUS_CHANGE, updatedItem });
 export const deleteTodo = (filteredItems) => ({ type: ACTIONS.DELETE_TODO, filteredItems });
-export const inputHandle = (currentItem) => ({type: ACTIONS.INPUT_HANDLE, currentItem});
-export const addTodo = (items) => ({type: ACTIONS.ADD_TODO, items})
+export const inputHandle = (currentItem) => ({ type: ACTIONS.INPUT_HANDLE, currentItem });
+export const addTodo = (items) => ({ type: ACTIONS.ADD_TODO, items })
 
 export const TodoProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);

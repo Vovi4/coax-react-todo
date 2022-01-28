@@ -6,9 +6,6 @@ import times from "../../Img/times.svg";
 import CurentDate from "../Date/CurrentDate";
 import { TodoContext, statusChange, deleteTodo } from "../Context/Context";
 
-
-
-// const TodoItems = ({ state, setState }) => {
 const TodoItems = () => {
 
     const { state, dispatch } = useContext(TodoContext);
@@ -16,7 +13,6 @@ const TodoItems = () => {
     useEffect(() => {
         localStorage.setItem("Todo-item", JSON.stringify(state.items));
     });
-
 
     const statusHandler = ({ id, clicked }) => {
         const updatedItem = state.items.map(item => {
@@ -30,24 +26,6 @@ const TodoItems = () => {
         })
         dispatch(statusChange(updatedItem))
     }
-    // const statusHandler = ({ id, clicked }) => {
-
-    //     const updatedItem = state.items.map(item => {
-    //         if (item.id === id) {
-    //             return {
-    //                 ...item,
-    //                 clicked: !clicked
-    //             }
-    //         }
-    //         return item;
-    //     })
-    //     setState(previousState => {
-    //         return {
-    //             ...previousState,
-    //             items: updatedItem
-    //         }
-    //     });
-    // }
 
     const deleteItem = id => {
         const filteredItems = state.items.filter(item => {
@@ -56,18 +34,6 @@ const TodoItems = () => {
         dispatch(deleteTodo(filteredItems))
         console.log("Todos was removed")
     }
-    // const deleteItem = id => {
-    //     const filteredItems = state.items.filter(item => {
-    //         return item.id !== id
-    //     })
-    //     setState(previousState => {
-    //         return {
-    //             ...previousState,
-    //             items: filteredItems
-    //         }
-    //     })
-    //     console.log("Todos was removed")
-    // }
 
     const createTasks = item => {
         return (
