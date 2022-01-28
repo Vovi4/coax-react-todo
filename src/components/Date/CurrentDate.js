@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import "./current-date.css";
+
+import "../../assets/current-date.css";
 
 const CurentDate = () => {
-    
-        const date = new Date();
-        const current = (date.getMonth() + 1) + " " + date.getDate() + " " + date.getFullYear();
-        
-        const [currentDate, setCurrentData] = useState(current);
-        
-        return (
-            <div className="curent-data">
-                {currentDate}
-            </div>
-        );
+
+  const date = new Date();
+  const current = date.toLocaleString('en-us',{year: 'numeric', month: 'short', day: 'numeric', weekday: 'short'});
+
+  const [currentDate, setCurrentData] = useState(current);
+
+  return (
+    <div className="curent-data">
+      {currentDate}
+    </div>
+  );
 }
 
 export default CurentDate;
