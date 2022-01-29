@@ -16,7 +16,9 @@ const InputTodo = () => {
 			id: Date.now(),
 			clicked: false
 		}
-		dispatch(inputHandle(currentItem))
+		dispatch(inputHandle(currentItem));
+
+		localStorage.setItem("Todo-item", JSON.stringify(currentItem));
 	}
 
 	const addItem = e => {

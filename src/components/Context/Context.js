@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useMemo } from "react";
+import React, { useReducer, createContext } from "react";
 
 export const TodoContext = createContext();
 
@@ -52,12 +52,8 @@ export const addTodo = (items) => ({ type: ACTIONS.ADD_TODO, items });
 export const TodoProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const contextValue = useMemo(() => {
-    return { state, dispatch };
-  }, [state, dispatch]);
-
   return (
-    <TodoContext.Provider value={contextValue}>
+    <TodoContext.Provider value={{ state, dispatch }}>
       {children}
     </TodoContext.Provider>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 
 import CurentDate from "../Date/CurrentDate";
 
@@ -14,10 +14,6 @@ import times from "../../icons/times.svg";
 const TodoItems = () => {
 
   const { state, dispatch } = useContext(TodoContext);
-
-  useEffect(() => {
-    localStorage.setItem("Todo-item", JSON.stringify(state.items));
-  });
 
   const statusHandler = ({ id, clicked }) => {
     const updatedItem = state.items.map(item => {
