@@ -1,25 +1,51 @@
-import React from "react";
-import "./input-todo.css";
+import React, { useContext } from "react";
+
+import { inputHandle, addTodo, TodoContext } from "../Context/Context";
+
+import "../../assets/input-todo.css";
 
 
-class InputTodo extends React.Component {      
-    
-    render() {
-        return (
-            <div className="form-wrp">
-                <form onSubmit={this.props.addItem} className="form">
-                    <input className="input"
-                        placeholder="Write your taask here"
-                        ref={this.props.inputElement}
-                        value={this.props.currentItem.text}
-                        onChange={this.props.handleInput}
-                    />
-                    <button className="add-btn"
-                    type="submit">Add</button>
-                </form>
-            </div>
-        )
-    }
+const InputTodo = () => {
+
+	const { state, dispatch } = useContext(TodoContext);
+
+	const handleInput = e => {
+		const itemText = e.target.value;
+		const currentItem = {
+			text: itemText, 
+			id: Date.now(),
+			clicked: false
+		}
+		dispatch(inputHandle(currentItem));
+
+		localStorage.setItem("Todo-item", JSON.stringify(currentItem));
+	}
+
+	const addItem = e => {
+		e.preventDefault()
+		const newItem = state.currentItem
+		if (newItem.text !== "") {
+			const items = [...state.items, newItem]
+			dispatch(addTodo(items))
+			console.log(`Todo ${newItem.text} was added`)
+		}
+	}
+
+	return (
+		<div className="form-wrp">
+			<form onSubmit={addItem} className="form">
+				<input
+					type="text"
+					className="input"
+					placeholder="Write your taask here"
+					value={state.currentItem.text}
+					onChange={handleInput}
+				/>
+				<button className="add-btn"
+					type="submit">Add</button>
+			</form>
+		</div>
+	)
 }
 
 export default InputTodo;

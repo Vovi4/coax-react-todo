@@ -1,4 +1,4 @@
-.App {
+.app {
   display: grid;
   grid-template-areas: 
     "date"
@@ -7,7 +7,7 @@
   grid-template-rows: 200px 1fr 90px;
   height: 896px;
   width: 414px;
-  border: 1px solid black;
+  border: 1px solid #000000;
   flex-direction: column;
   flex-wrap: nowrap;
 }

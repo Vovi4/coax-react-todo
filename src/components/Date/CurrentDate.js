@@ -1,25 +1,15 @@
-import React from "react";
-import "./current-date.css";
+import "../../assets/current-date.css";
 
-class CurentDate extends React.Component {
-    constructor() {
-        super()
+const CurentDate = () => {
 
-        const data = new Date();
-        const current = (data.getMonth() + 1) + " " + data.getDate() + " " + data.getFullYear();
+  const date = new Date();
+  const current = date.toLocaleString('en-us',{year: 'numeric', month: 'short', day: 'numeric', weekday: 'short'});
 
-        this.state = {
-            date: current
-        }
-    }
-
-    render() {
-        return (
-            <div className="curent-data">
-                {this.state.date}
-            </div>
-        );
-    }
+  return (
+    <div className="curent-data">
+      {current}
+    </div>
+  );
 }
 
 export default CurentDate;

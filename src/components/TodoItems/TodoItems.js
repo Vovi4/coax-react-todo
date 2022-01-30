@@ -1,47 +1,68 @@
-import React from "react";
-import "./todo-items.css";
-import trash from "../../Img/trash.svg";
-import check from "../../Img/check.svg";
-import times from "../../Img/times.svg";
+import React, { useContext } from "react";
+
 import CurentDate from "../Date/CurrentDate";
 
-class TodoItems extends React.Component {   
+import { TodoContext, statusChange, deleteTodo } from "../Context/Context";
 
-    componentDidUpdate (prevProps) {        
-        if (this.props.entries.length > prevProps.entries.length) {
-            const addedElement = this.props.entries
-            console.log(`New todo ${addedElement[addedElement.length-1].text} was added`)
-            localStorage.setItem("Todo-item", JSON.stringify(this.props.entries))
+import "../../assets/todo-items.css";
+
+import trash from "../../icons/trash.svg";
+import check from "../../icons/check.svg";
+import times from "../../icons/times.svg";
+
+
+const TodoItems = () => {
+
+  const { state, dispatch } = useContext(TodoContext);
+
+  const statusHandler = ({ id, clicked }) => {
+    const updatedItem = state.items.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          clicked: !clicked
         }
-    }
+      }
+      return item;
+    })
+    dispatch(statusChange(updatedItem))
+  }
 
-    createTasks = item => {
-        return (
-            <div className="content-wrp" key = {item.id}>  
-                <div className="todo-wrp" >
-                    <button className="status-btn" onClick = {() => this.props.statusHandler({id: item.id, clicked: item.clicked })}>
-                        <img src={item.clicked ? check : times} alt="trash-box"></img>
-                    </button>
-                    <li key={item.id}>{item.text}</li>
-                    <button className="trash-btn" onClick={() => this.props.deleteItem(item.id)}>
-                        <img src={trash} alt="trash-box"></img>
-                    </button>
-                </div>
-            </div>
-        )
-    }
+  const deleteItem = id => {
+    const filteredItems = state.items.filter(item => {
+      return item.id !== id
+    })
+    dispatch(deleteTodo(filteredItems))
+    console.log("Todos was removed")
+  }
 
-    render() {
-        const todoEntries = this.props.entries
-        const listItems = todoEntries.map(this.createTasks)
+  const createTasks = item => {
+    return (
+      <div className="content-wrp" key={item.id}>
+        <div className="todo-wrp" >
+          <button className="status-btn" onClick={() => statusHandler({ id: item.id, clicked: item.clicked })}>
+            <img src={item.clicked
+              ? check
+              : times}
+              alt="trash-box"></img>
+          </button>
+          <li key={item.id}>{item.text}</li>
+          <button className="trash-btn" onClick={() => deleteItem(item.id)}>
+            <img src={trash} alt="trash-box"></img>
+          </button>
+        </div>
+      </div>
+    )
+  }
 
-        return (
-            <>
-                <CurentDate />
-                <ul>{listItems}</ul>                
-            </>            
-        )
-    }
+  const listItems = state.items.map(createTasks);
+
+  return (
+    <>
+      <CurentDate />
+      <ul>{listItems}</ul>
+    </>
+  )
 }
 
 export default TodoItems;
