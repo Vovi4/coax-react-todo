@@ -1,0 +1,10 @@
+.spinner-wrp{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  height: 50px;
+  width: 50px;
+}

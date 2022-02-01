@@ -1,0 +1,15 @@
+.btn-wrp {
+  grid-area: fetch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fetch-btn {
+  background-color: #ffffff;  
+  border: 2px solid #000000;
+  font-size: 18px;
+  height: 40px;
+  width: 190px;
+  border-radius: 8px;
+}

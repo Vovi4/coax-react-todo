@@ -1,8 +1,9 @@
-import { STATUS_CHANGE, DELETE_TODO, ADD_TODO } from "../types/types";
+import { STATUS_CHANGE, DELETE_TODO, ADD_TODO, FETCH_POSTS } from "../types/types";
 
 
 const initialState = {
-  items: []
+  items: [],
+  fetchedItems: []
 }
 
 const todoReducer = (state = initialState, action) => {
@@ -21,6 +22,10 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload 
+      };        
+    case FETCH_POSTS:
+      return { ...state,
+        fetchedItems: action.payload 
       };
     default: return state
   }

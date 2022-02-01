@@ -15,33 +15,33 @@ const InputTodo = () => {
 
 	const handleInput = e => {
 		const newItem = {
-			text: e.target.value,
+			title: e.target.value,
 			id: Date.now(),
-			clicked: false
+			completed: false
 		}
 		setCurent(newItem)
 	}
 
 	const addItem = e => {
 		e.preventDefault()
-		if (!currentItem.text.trim()) {
+		if (!currentItem.title.trim()) {
 			return console.log("Todo input field is empty")
 		}
 		dispatch(addTodo(currentItem))
-		console.log(`Todo ${currentItem.text} was added`)
+		console.log(`Todo ${currentItem.title} was added`)
 		localStorage.setItem("Todo-item", JSON.stringify([...state.items, currentItem]));
-		setCurent({ text: "" })
+		setCurent({ title: "" })
 	}
 
 	return (
 		<div className="form-wrp">
 			<form onSubmit={addItem} className="form">
 				<input
-					name="text"
+					name="title"
 					type="text"
 					className="input"
 					placeholder="Write your taask here"
-					value={currentItem.text}
+					value={currentItem.title}
 					onChange={handleInput}
 				/>
 				<button className="add-btn"
