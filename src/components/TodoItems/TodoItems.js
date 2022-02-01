@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import CurentDate from "../Date/CurrentDate";
 
-import { TodoContext, statusChange, deleteTodo } from "../Context/Context";
+import { statusChange, deleteTodo } from "../../redux/actions/actions";
 
 import "../../assets/todo-items.css";
 
@@ -13,7 +13,8 @@ import times from "../../icons/times.svg";
 
 const TodoItems = () => {
 
-  const { state, dispatch } = useContext(TodoContext);
+  const dispatch = useDispatch();
+	const state = useSelector(state => state.todos)
 
   const statusHandler = ({ id, clicked }) => {
     const updatedItem = state.items.map(item => {
