@@ -1,5 +1,8 @@
+.item-wrp {
+   grid-area: main;
+}
+
 .content-wrp {
-  grid-template: main;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -37,6 +40,7 @@ ul {
   display: flex;
   flex-direction: column;
   margin-left: 50px;
+  margin-right: 15px ;
   margin-top: 20px;
   height: auto;
   }

@@ -1,4 +1,5 @@
 .spinner-wrp{
+  grid-template: servise;
   display: flex;
   justify-content: center;
   align-items: center;
