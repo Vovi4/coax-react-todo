@@ -1,23 +1,23 @@
 import { STATUS_CHANGE, DELETE_TODO, ADD_TODO } from "../types/types";
 
 
-export const addTodo = (currentItem) => {
+export const addTodo = (payload) => {
   return {
     type: ADD_TODO,
-    payload: currentItem
+    payload
   }
 };
 
-export const statusChange = (updatedItem) => {
+export const statusChange = (payload) => {
   return {
     type: STATUS_CHANGE,
-    payload: updatedItem
+    payload
   }
 };
 
-export const deleteTodo = (filteredItems) => {
+export const deleteTodo = (payload) => {
   return {
     type: DELETE_TODO,
-    payload: filteredItems
+    payload
   }
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addTodo } from "../../redux/actions/actions";
+import { addTodo } from "../../redux/actions/postActions";
 
 import "../../assets/input-todo.css";
 

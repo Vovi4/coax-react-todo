@@ -24,7 +24,8 @@ const todoReducer = (state = initialState, action) => {
         items: action.payload 
       };        
     case FETCH_POSTS:
-      return { ...state,
+      return { 
+        ...state,
         fetchedItems: action.payload 
       };
     default: return state
