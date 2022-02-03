@@ -1,4 +1,5 @@
 .form-wrp {    
+  grid-area: input;
   display: flex;
   flex-direction: column;
   align-items: center;

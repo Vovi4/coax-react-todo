@@ -1,44 +1,47 @@
-import React, { useContext } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { inputHandle, addTodo, TodoContext } from "../Context/Context";
+import { addTodo } from "../../redux/actions/postActions";
 
 import "../../assets/input-todo.css";
 
 
 const InputTodo = () => {
 
-	const { state, dispatch } = useContext(TodoContext);
+	const [currentItem, setCurent] = useState("")
+
+	const dispatch = useDispatch();
+	const state = useSelector(state => state.todos)
 
 	const handleInput = e => {
-		const itemText = e.target.value;
-		const currentItem = {
-			text: itemText, 
+		const newItem = {
+			title: e.target.value,
 			id: Date.now(),
-			clicked: false
+			completed: false
 		}
-		dispatch(inputHandle(currentItem));
-
-		localStorage.setItem("Todo-item", JSON.stringify(currentItem));
+		setCurent(newItem)
 	}
 
 	const addItem = e => {
 		e.preventDefault()
-		const newItem = state.currentItem
-		if (newItem.text !== "") {
-			const items = [...state.items, newItem]
-			dispatch(addTodo(items))
-			console.log(`Todo ${newItem.text} was added`)
+		if (!currentItem.title.trim()) {
+			return console.log("Todo input field is empty")
 		}
+		dispatch(addTodo(currentItem))
+		console.log(`Todo ${currentItem.title} was added`)
+		localStorage.setItem("Todo-item", JSON.stringify([...state.items, currentItem]));
+		setCurent({ title: "" })
 	}
 
 	return (
 		<div className="form-wrp">
 			<form onSubmit={addItem} className="form">
 				<input
+					name="title"
 					type="text"
 					className="input"
 					placeholder="Write your taask here"
-					value={state.currentItem.text}
+					value={currentItem.title}
 					onChange={handleInput}
 				/>
 				<button className="add-btn"

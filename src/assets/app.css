@@ -1,10 +1,13 @@
 .app {
   display: grid;
   grid-template-areas: 
+    "servise"
     "date"
+    "fetch"
+    
     "main"
     "input";
-  grid-template-rows: 200px 1fr 90px;
+  grid-template-rows: 100px 50px 50px 1fr 90px;
   height: 896px;
   width: 414px;
   border: 1px solid #000000;
